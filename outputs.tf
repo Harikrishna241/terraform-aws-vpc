@@ -1,4 +1,4 @@
 output "vpc_id" {
-    value = aws_vpc.expense
+    value = aws_vpc.expense.id
   
 }
