@@ -77,6 +77,19 @@ resource "aws_subnet" "db" {
         )
 }
 
+resource "aws_db_subnet_group" "default" {
+  name       = "${local.resource_name}"
+  subnet_ids = aws_subnet.db[*].id
+
+  tags = merge(
+    var.common_tags,
+    
+    {
+        Name = "${local.resource_name}"
+    }
+  )
+}
+
 resource "aws_eip" "expense" {
   
   domain   = "vpc"
